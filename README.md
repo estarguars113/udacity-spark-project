@@ -30,7 +30,7 @@ In case of error in the creation of the topic
 First data production, kafka producer
 
 `
-/usr/bin/kafka-console-producer --broker-list localhost:9092 --topic <topic_name>
+python kafka_server.py
 `
 
 Once the data is loaded, you can consume it from the topic
