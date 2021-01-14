@@ -38,7 +38,7 @@ python kafka_server.py
 Once the data is loaded, you can consume it from the topic
 
 `
-/usr/bin/kafka-console-producer --broker-list localhost:9092 --topic police-service-calls
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.4 --master local[*] --conf spark.ui.port=3000 data_stream.py
 `
 
 ## Pyspark setup
