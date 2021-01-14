@@ -6,8 +6,6 @@
 
 `
 /usr/bin/kafka-topics  --create --zookeeper localhost:2181 --topic <topic_name> --partitions <num_partitions> --replication-factor <replication_factor>
-
-/usr/bin/kafka-topics  --create --zookeeper localhost:2181 --topic police-service-calls --partitions 3 --replication-factor 1
 `
 
 In my specific case I created the topic with a replication factor of 1 and 3 partitions
@@ -62,3 +60,12 @@ First based on the number of partitions I started changing the number of executo
 Resulting in 3 executors each one with 3 gigabites of memory for processing
 
 **What were the 2-3 most efficient SparkSession property key/value pairs? Through testing multiple variations on values, how can you tell these were the most optimal?**
+
+In my case was changing the parallelism and the partitions shuffle
+
+`
+.config("spark.sql.shuffle.partitions", 3) \
+.config("spark.default.parallelism", 200) \
+`
+
+I started with around 10 rows processed by second and by changing these two values I triple this value(screenshots attached)
